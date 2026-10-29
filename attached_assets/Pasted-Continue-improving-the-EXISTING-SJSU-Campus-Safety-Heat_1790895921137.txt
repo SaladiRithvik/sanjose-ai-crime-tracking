@@ -1,0 +1,477 @@
+Continue improving the EXISTING SJSU Campus Safety Heat Map application.
+
+This update is ONLY for VISUAL DESIGN, GUI CLEANUP, and overall polish.
+
+IMPORTANT:
+- Do NOT rebuild the app.
+- Do NOT change how any major feature works.
+- Do NOT change database logic, reporting logic, analyst moderation, login roles, heat-map calculations, or navigation behavior.
+- Preserve all existing functionality.
+- You have creative freedom to experiment with the visual design and make the app look as polished and professional as possible.
+- If a visual experiment makes the interface less readable or harder to use, do not keep it.
+
+==================================================
+MAIN DESIGN GOAL
+==================================================
+
+Make the application feel like a clean, modern, polished university public-safety application rather than a basic prototype.
+
+The design should feel:
+
+- professional
+- trustworthy
+- modern
+- clean
+- easy to understand
+- appropriate for SJSU students, residents, visitors, and analysts
+
+Do not make it overly futuristic or flashy.
+
+Prioritize usability and readability.
+
+==================================================
+1. CHANGE THE COLOR THEME
+==================================================
+
+Redesign the application's overall color palette around:
+
+PRIMARY:
+Navy Blue
+
+SECONDARY:
+White
+
+TEXT:
+Black / very dark gray
+
+Use navy blue for things such as:
+
+- navigation
+- headers
+- important buttons
+- selected navigation items
+- icons
+- borders or accents
+- important interface elements
+
+Use white for:
+
+- cards
+- forms
+- primary content areas
+- report panels
+- map containers
+
+Use black or dark gray for most readable text.
+
+Use lighter gray only for secondary text.
+
+Do NOT make all text navy blue.
+
+Maintain strong contrast and readability.
+
+For important destructive actions such as:
+
+- Deny Report
+- Remove Report
+
+red may still be used because it communicates danger/destructive actions.
+
+Heat-map colors should NOT be changed.
+
+The heat map should continue using its existing:
+
+yellow → orange → red → deep red
+
+visualization.
+
+==================================================
+2. IMPROVE TYPOGRAPHY
+==================================================
+
+Clean up typography throughout the entire app.
+
+Use a modern, readable sans-serif font.
+
+Create a clear visual hierarchy.
+
+IMPORTANT INFORMATION SHOULD USE BOLD TEXT.
+
+Examples:
+
+Report an Incident
+
+Incident Location
+
+Possible Incident Type
+
+Anonymous Report
+
+Pending Review
+
+Approved
+
+Denied
+
+Reported Incident Concentration
+
+Use bold or semi-bold text for:
+
+- page titles
+- section headings
+- field labels
+- important values
+- warnings
+- navigation selections
+- major buttons
+
+Avoid bolding entire paragraphs.
+
+Regular explanatory text should remain normal weight.
+
+The user should be able to quickly scan the page and understand what matters.
+
+==================================================
+3. CLEAN UP SPACING AND LAYOUT
+==================================================
+
+Review every major page and improve:
+
+- spacing
+- alignment
+- margins
+- padding
+- card sizes
+- button placement
+- form organization
+
+Avoid giant empty spaces.
+
+Avoid elements being too close together.
+
+Keep related information visually grouped.
+
+Use consistent spacing throughout the app.
+
+Pages should feel intentionally designed rather than like individual components placed randomly.
+
+==================================================
+4. IMPROVE CARDS AND PANELS
+==================================================
+
+Use clean white cards/panels for important sections such as:
+
+- incident reporting
+- AI-generated report preview
+- analyst review
+- incident details
+- login
+- map information
+- instructions
+
+Cards may use:
+
+- subtle rounded corners
+- very light shadows
+- thin borders
+- navy accent lines
+- subtle hover effects
+
+Keep these effects restrained.
+
+Do not make the application overly rounded or cartoon-like.
+
+==================================================
+5. IMPROVE BUTTONS
+==================================================
+
+Create a consistent button system.
+
+PRIMARY ACTION:
+
+Navy background
+White text
+Bold or semi-bold label
+
+Examples:
+- Submit Report
+- Analyze Report
+- Confirm Location
+- Approve Report
+- Log In
+
+SECONDARY ACTION:
+
+White or light background
+Navy border/text
+
+Examples:
+- Change Location
+- Edit
+- Cancel
+- Back
+
+DESTRUCTIVE ACTION:
+
+Red accent/background where appropriate
+
+Examples:
+- Deny Report
+- Remove Report
+
+Buttons should:
+- have consistent sizing
+- have clear hover states
+- have clear active/click states
+- look clickable
+- work well on mobile
+
+==================================================
+6. IMPROVE NAVIGATION
+==================================================
+
+Polish the sidebar/top navigation.
+
+Use navy blue as the main navigation color.
+
+Make the CURRENT PAGE very obvious.
+
+For example:
+
+Report Incident
+Heat Map
+Analyst Review
+
+The selected page could use:
+- white highlight
+- lighter navy background
+- accent bar
+- bold text
+
+Choose whatever looks best.
+
+Make icons and labels align cleanly.
+
+Avoid clutter.
+
+==================================================
+7. ADD SUBTLE BACKGROUND DETAIL
+==================================================
+
+The application's background currently feels too blank.
+
+Add subtle visual detail.
+
+Experiment with tasteful possibilities such as:
+
+- very light blue/gray gradient
+- subtle geometric shapes
+- extremely faint grid pattern
+- faint campus-inspired lines
+- soft abstract shapes
+- subtle navy decorative accents
+- extremely light map/grid styling
+
+IMPORTANT:
+
+The background should NEVER compete with the content.
+
+Keep the effect subtle.
+
+The user should notice that the page feels more polished without immediately focusing on the background itself.
+
+Avoid:
+- loud patterns
+- bright gradients
+- distracting animations
+- large illustrations behind forms
+- heavy textures
+
+You have creative freedom to experiment and choose what looks best.
+
+==================================================
+8. IMPROVE THE REPORT PAGE
+==================================================
+
+The Report Incident page is one of the most important screens.
+
+Make it especially clean.
+
+The hierarchy should be obvious:
+
+REPORT AN INCIDENT
+
+brief instruction
+
+Upload Photo
+
+Short Description
+
+AI Analysis / detected information
+
+Review
+
+Submit
+
+Make the photo-upload section visually attractive.
+
+Consider:
+- clean drag-and-drop area
+- simple upload icon
+- dashed border
+- subtle navy accents
+
+Keep the page uncluttered.
+
+==================================================
+9. IMPROVE THE HEAT MAP PAGE
+==================================================
+
+Do NOT change the map functionality.
+
+Improve the surrounding GUI.
+
+Make sure:
+
+- map container looks intentional
+- legend is easy to read
+- map controls fit the overall theme
+- information panels look polished
+- incident popups have readable hierarchy
+
+The map itself should remain the main focus.
+
+Do not cover too much of the map with decorative UI.
+
+==================================================
+10. IMPROVE ANALYST VIEW
+==================================================
+
+Make the Analyst Review Dashboard visually distinct while still belonging to the same app.
+
+The analyst should immediately understand:
+
+REPORT TO REVIEW
+
+Photo
+
+Incident Information
+
+Location
+
+Submitted Details
+
+Then clearly separated actions:
+
+Approve Report
+
+Deny Report
+
+Use visual status indicators for:
+
+Pending
+Approved
+Denied
+
+Make these status indicators small and professional.
+
+==================================================
+11. IMPROVE LOGIN / ENTRY PAGE
+==================================================
+
+Make the landing screen visually polished and easy to understand.
+
+The options should clearly separate:
+
+SJSU Student / Staff
+
+Resident / Visitor
+
+Analyst / Report Reviewer
+
+View Heat Map
+
+Consider using clean cards or large selection buttons.
+
+Each choice should have:
+
+- short title
+- small description
+- simple icon if appropriate
+
+Do not make users read large paragraphs.
+
+==================================================
+12. ADD SMALL POLISH DETAILS
+==================================================
+
+Experiment with small professional touches such as:
+
+- subtle hover animations
+- smooth page transitions
+- button feedback
+- clean loading indicators
+- polished empty states
+- confirmation messages
+- consistent icons
+- subtle shadows
+- cleaner form focus states
+
+Animations should be quick and subtle.
+
+Do not add excessive motion.
+
+==================================================
+13. MOBILE RESPONSIVENESS
+==================================================
+
+Make sure all visual improvements work on mobile.
+
+Check:
+
+- report form
+- navigation
+- analyst controls
+- heat map
+- login
+- buttons
+- image upload
+- location selector
+
+No text should overlap.
+
+Buttons should remain easy to tap.
+
+Cards should fit the screen properly.
+
+==================================================
+14. EXPERIMENT AND USE DESIGN JUDGMENT
+==================================================
+
+For this visual update, you have permission to experiment.
+
+Try different combinations of:
+
+- spacing
+- card styling
+- navy shades
+- subtle backgrounds
+- typography
+- shadows
+- border treatments
+- navigation styling
+
+Choose the version that looks the most polished and cohesive.
+
+Do NOT ask me to choose every visual detail.
+
+Use your own design judgment.
+
+However, preserve this core theme:
+
+NAVY BLUE + WHITE
+BLACK/DARK TEXT
+CLEAN
+MODERN
+PROFESSIONAL
+UNIVERSITY PUBLIC-SAFETY APPLICATION

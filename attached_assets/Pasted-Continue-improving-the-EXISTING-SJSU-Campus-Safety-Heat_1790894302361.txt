@@ -1,0 +1,526 @@
+Continue improving the EXISTING SJSU Campus Safety Heat Map application.
+
+IMPORTANT:
+- Do NOT rebuild the app from scratch.
+- Preserve the current visual design, report flow, heat map, login roles, analyst dashboard, and existing functionality.
+- This update is for FINAL POLISH and DATA PERSISTENCE.
+- Focus only on the changes below.
+- Test each change before moving to the next.
+- Do not add unrelated features.
+
+==================================================
+STEP 1 — ANALYST CAN REMOVE EXISTING HEAT MAP POINTS
+==================================================
+
+When an ANALYST views the heat map, give them moderation controls for existing approved reports / heat map points.
+
+Normal users should NOT see these controls.
+
+For analyst users:
+
+- clicking an individual report marker should open its details
+- include a button such as:
+
+[ Remove Report ]
+
+or
+
+[ Remove From Heat Map ]
+
+When the analyst removes a report:
+
+1. Show a confirmation dialog:
+   "Are you sure you want to remove this report from the heat map?"
+
+2. If confirmed:
+   - remove or mark the report as removed in the shared database
+   - remove it from the heat-map data source
+   - recalculate/update the heat map immediately
+   - remove the marker from the current map view
+
+3. The removal must persist after:
+   - refreshing the page
+   - logging out and back in
+   - another user opening the application
+
+Do NOT only remove the point visually from the current browser session.
+
+The database must reflect the change.
+
+If useful, use a status such as:
+
+pending
+approved
+denied
+removed
+
+Only reports with an APPROVED status should contribute to the public heat map.
+
+==================================================
+STEP 2 — ADD DEMO REPORTS TO THE ANALYST REVIEW QUEUE
+==================================================
+
+Add several fictional DEMO REPORTS so the analyst review workflow is easy to demonstrate.
+
+Create approximately 4–6 demo reports.
+
+They should:
+- begin with status: pending
+- appear in the Analyst Review section
+- have different incident categories
+- have different SJSU-area locations
+- have short realistic descriptions
+- include date/time
+- include anonymity status
+- include location coordinates
+
+Preferably include an image for several of the reports.
+
+If local placeholder/demo images are used:
+- store them properly with the project
+- make sure they actually render
+- clearly treat them as fictional demo content
+
+Do NOT use real people in a way that implies they committed a crime.
+
+Safe examples could include:
+- damaged property
+- abandoned bicycle
+- broken glass
+- empty hallway/area
+- traffic obstruction
+- generic campus walkway
+- staged/illustrative incident images
+
+Label the demo reports internally as:
+
+isDemo: true
+
+or another clear field.
+
+These reports should still behave exactly like normal pending reports:
+
+Approve
+→ becomes approved
+→ appears on heat map
+
+Deny
+→ becomes denied/removed
+→ does not appear on heat map
+
+==================================================
+STEP 3 — CHANGE DEFAULT PAGE FOR NORMAL USERS
+==================================================
+
+Change the navigation behavior for:
+
+- Resident / Visitor
+- SJSU Student / Staff
+
+Currently they are taken directly to the heat map after entering the app.
+
+Change this.
+
+The DEFAULT page for these users should now be:
+
+REPORT INCIDENT
+
+After login / entry:
+
+Resident / Visitor
+→ Report page
+
+SJSU Student / Staff
+→ Report page
+
+The navigation sidebar/menu should still allow them to switch to:
+
+- Heat Map
+- Report Incident
+
+Do NOT remove the heat-map page.
+
+Simply reverse the default behavior.
+
+The purpose is:
+
+When a normal user enters the app, the primary action should be reporting an incident.
+
+Viewing the map should remain available through navigation.
+
+IMPORTANT:
+
+The separate public option:
+
+"View Heat Map"
+
+should STILL take a user directly to the heat map without requiring login.
+
+So the behavior should be:
+
+View Heat Map
+→ Heat Map
+
+Resident / Visitor
+→ Report Page
+
+SJSU Student / Staff
+→ Report Page
+
+Analyst
+→ Analyst Review Dashboard
+
+==================================================
+STEP 4 — FIX REPORT DATA PERSISTENCE
+==================================================
+
+This is a CRITICAL fix.
+
+Currently reports appear to exist only in the browser/session of the person who created them.
+
+This is incorrect.
+
+ALL submitted reports must be stored in a SHARED Replit database so that:
+
+- User A can submit a report
+- User B can open the app from another browser/device
+- Analyst can see User A's pending report
+- reports remain after page refreshes
+- reports remain after restarting the app
+
+Do NOT rely on:
+- localStorage
+- sessionStorage
+- browser-only arrays
+- client-side state
+
+for the authoritative report database.
+
+Use the existing Replit database / PostgreSQL / Replit DB solution already available in the project.
+
+If a database already exists, use it rather than creating a second unrelated storage system.
+
+==================================================
+STEP 5 — CREATE / VERIFY A REPORTS TABLE
+==================================================
+
+Ensure there is a shared database table for reports.
+
+A report record should contain fields similar to:
+
+id
+createdAt
+updatedAt
+
+description
+
+incidentCategory
+
+latitude
+longitude
+locationLabel
+
+imageUrl or stored image reference
+
+anonymous
+
+reporterDisplayName
+reporterRole
+
+status
+
+isDemo
+
+source
+
+Optional fields if already supported:
+aiDetectedCategory
+aiDetectedLocation
+confidence
+analystNotes
+
+Status should support at least:
+
+pending
+approved
+denied
+removed
+
+Do NOT publicly store or expose unnecessary private login information.
+
+SJSU student IDs should not appear in public map data.
+
+==================================================
+STEP 6 — SUBMIT REPORTS TO THE DATABASE
+==================================================
+
+When a user submits a new report:
+
+1. Validate/prepare the report
+2. Insert it into the shared reports database table
+3. Set:
+
+status = "pending"
+
+4. Confirm the database write succeeded
+5. Show a success message
+
+Example:
+
+"Report submitted for review."
+
+The report should then become visible to analysts from any browser/device.
+
+Do NOT mark user reports approved automatically.
+
+==================================================
+STEP 7 — ANALYST REVIEW MUST USE DATABASE DATA
+==================================================
+
+The Analyst Review Dashboard must read pending reports from the shared database.
+
+Do NOT rely on client-side demo arrays as the main source.
+
+The analyst should see all database reports where:
+
+status = "pending"
+
+When approved:
+
+update database:
+status = "approved"
+
+When denied:
+
+update database:
+status = "denied"
+
+Then automatically load the next pending report.
+
+The change must persist globally.
+
+==================================================
+STEP 8 — HEAT MAP MUST USE APPROVED DATABASE REPORTS
+==================================================
+
+The public heat map should read APPROVED reports from the same shared database.
+
+Only include reports where:
+
+status = "approved"
+
+Do not show:
+
+pending
+denied
+removed
+
+reports in the public heat-map layer.
+
+When an analyst approves a report:
+
+database status changes
+→ heat-map query includes it
+→ heat map updates
+
+When an analyst removes an existing report:
+
+database status changes to "removed"
+→ heat-map query excludes it
+→ heat map updates
+
+This should work across different users/devices.
+
+==================================================
+STEP 9 — REAL-TIME / REFRESH BEHAVIOR
+==================================================
+
+If full real-time synchronization is simple with the current stack, use it.
+
+Otherwise, implement reliable refresh behavior.
+
+At minimum:
+
+- heat map refreshes when opened
+- analyst queue refreshes after approval/denial
+- submitting a report writes immediately to the database
+- browser refresh loads the latest database data
+
+Do not make users depend on stale client-side state.
+
+==================================================
+STEP 10 — DATABASE FAILURE HANDLING
+==================================================
+
+Add simple error handling.
+
+If saving a report fails:
+
+Do NOT pretend it succeeded.
+
+Show:
+
+"Report could not be saved. Please try again."
+
+If loading analyst reports fails:
+
+Show:
+
+"Unable to load reports."
+
+Log useful technical details for debugging.
+
+Do not silently fall back to browser-only storage.
+
+==================================================
+STEP 11 — FINAL ROLE / PAGE FLOW
+==================================================
+
+The application should now behave like this:
+
+PUBLIC HEAT MAP USER
+
+Landing
+→ View Heat Map
+→ Heat Map
+
+
+RESIDENT / VISITOR
+
+Landing
+→ Continue as Resident / Visitor
+→ Report Incident page by default
+→ optional Heat Map through navigation
+
+
+SJSU STUDENT / STAFF
+
+Landing
+→ Login
+→ Report Incident page by default
+→ optional Heat Map through navigation
+
+
+ANALYST
+
+Landing
+→ Analyst Login
+→ Analyst Review Dashboard
+
+Analyst can:
+- approve pending reports
+- deny pending reports
+- view heat map
+- remove approved reports from heat map
+
+==================================================
+STEP 12 — FINAL TESTING
+==================================================
+
+Test these scenarios carefully.
+
+TEST 1 — CROSS-BROWSER REPORT
+
+Browser A:
+Submit a new report.
+
+Browser B:
+Login as Analyst.
+
+Expected:
+The new report appears in the Analyst Review queue.
+
+--------------------------------------------------
+
+TEST 2 — APPROVE
+
+Analyst approves report.
+
+Expected:
+- database status becomes approved
+- report leaves pending queue
+- next report loads
+- report appears on public heat map
+- refresh does not remove it
+
+--------------------------------------------------
+
+TEST 3 — DENY
+
+Submit another report.
+
+Analyst denies it.
+
+Expected:
+- status becomes denied
+- report leaves queue
+- does NOT appear on heat map
+
+--------------------------------------------------
+
+TEST 4 — REMOVE EXISTING REPORT
+
+Analyst opens heat map.
+
+Select approved report.
+
+Click Remove Report.
+
+Expected:
+- status becomes removed
+- marker disappears
+- heat map recalculates
+- refresh does not bring it back
+- other users also no longer see it
+
+--------------------------------------------------
+
+TEST 5 — DEFAULT NAVIGATION
+
+Resident / Visitor:
+opens Report page.
+
+SJSU Student / Staff:
+opens Report page.
+
+Analyst:
+opens Analyst Review.
+
+View Heat Map:
+opens Heat Map directly.
+
+--------------------------------------------------
+
+TEST 6 — DEMO REPORTS
+
+Analyst dashboard should contain several fictional pending demo reports with realistic details and some demo images.
+
+Approve one:
+→ appears on map.
+
+Deny one:
+→ does not appear.
+
+==================================================
+FINAL GOAL
+==================================================
+
+This final version should feel like a shared functioning prototype rather than a single-browser demo.
+
+The core architecture should now be:
+
+USER SUBMITS REPORT
+→ SHARED DATABASE
+→ PENDING
+
+ANALYST REVIEWS
+→ APPROVED / DENIED
+
+APPROVED
+→ PUBLIC HEAT MAP
+
+ANALYST REMOVES
+→ DATABASE UPDATED
+→ HEAT MAP UPDATED FOR EVERYONE
+
+Keep the existing design and polish the experience instead of introducing unrelated new systems.

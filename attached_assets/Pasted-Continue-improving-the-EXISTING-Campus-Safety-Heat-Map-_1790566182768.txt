@@ -1,0 +1,496 @@
+Continue improving the EXISTING Campus Safety Heat Map application.
+
+IMPORTANT:
+- Do NOT rebuild the application from scratch.
+- Preserve the current heat map, report system, styling, stored data, and working functionality unless a change below requires modifying them.
+- This update is mainly about fixing USER ROLES, REPORT MODERATION, HEAT MAP ACCESS, and simplifying the REPORTING INTERFACE.
+- Work through the sections below in order.
+- Test each section before moving to the next.
+- Do not add unrelated features.
+
+==================================================
+STEP 1 — FIX THE USER ROLE SYSTEM
+==================================================
+
+The application should now have THREE clearly separate ways to enter:
+
+1. SJSU STUDENT / STAFF
+2. ANALYST / REPORT REVIEWER
+3. RESIDENT / VISITOR
+
+There should ALSO be a separate option to simply:
+
+4. VIEW HEAT MAP
+
+These roles must remain separate.
+
+-----------------------------------
+SJSU STUDENT / STAFF
+-----------------------------------
+
+This option should use the existing SJSU login/prototype authentication.
+
+After login, this user should have access to:
+- the public heat map
+- submitting incident reports
+- normal user-facing features
+
+They should NOT automatically enter Analyst / Reporter Review mode.
+
+They should NOT see:
+- approve report
+- deny report
+- moderation queue
+- analyst-only controls
+
+The default post-login screen should be the normal map/user experience.
+
+-----------------------------------
+ANALYST / REPORT REVIEWER
+-----------------------------------
+
+Create a completely separate Analyst login.
+
+This represents a theoretical law-enforcement/public-safety analyst who reviews submitted reports.
+
+The Analyst login should NOT be the same as the SJSU Student / Staff login.
+
+After an Analyst logs in, they should enter an ANALYST DASHBOARD whose main purpose is:
+
+- review pending reports
+- inspect report information
+- approve reports
+- deny reports
+
+The Analyst view should NOT automatically behave like the normal student reporting interface.
+
+Keep this role isolated from normal users.
+
+For this prototype, simple mock analyst credentials are acceptable.
+
+Clearly structure the authentication so analyst access could later be replaced with real secure authentication.
+
+-----------------------------------
+RESIDENT / VISITOR
+-----------------------------------
+
+The existing "Continue as Resident / Visitor" option should require NO login.
+
+IMPORTANT FIX:
+
+Once someone chooses Resident / Visitor, they must NOT be able to classify themselves as:
+
+- SJSU Student
+- SJSU Staff
+
+Remove or disable any later selector that lets a Resident / Visitor change themselves into those roles.
+
+Their role should remain:
+Resident / Visitor
+
+Residents / Visitors may:
+- view the heat map
+- submit a public incident report if that functionality is currently intended for them
+
+But they should never receive SJSU-authenticated status.
+
+-----------------------------------
+VIEW HEAT MAP
+-----------------------------------
+
+Add a very obvious option on the opening screen:
+
+"View Heat Map"
+
+This should require:
+- NO login
+- NO account
+- NO report submission
+
+This option is for users who only want to see current incident patterns.
+
+Selecting it should take the user directly to the interactive heat map.
+
+Do not force them through:
+- login
+- role selection
+- reporting forms
+
+The heat map is one of the main purposes of the application, so it should be easy to access.
+
+==================================================
+STEP 2 — CLEAN UP THE LANDING / LOGIN SCREEN
+==================================================
+
+Reorganize the opening page so the choices are simple and visually distinct.
+
+Suggested structure:
+
+SJSU Student / Staff
+[ Log In ]
+
+Analyst / Report Reviewer
+[ Analyst Login ]
+
+Resident / Visitor
+[ Continue Without Login ]
+
+or
+
+[ View Heat Map ]
+
+The Analyst login should look clearly different from the normal user login.
+
+Avoid making users choose roles after they have already chosen how they entered the application.
+
+The role should be established at entry.
+
+==================================================
+STEP 3 — FIX ANALYST REPORT MODERATION
+==================================================
+
+The Analyst dashboard currently has report review functionality.
+
+Improve the moderation workflow.
+
+Each pending report should clearly display the useful information currently available, such as:
+
+- uploaded photo
+- description
+- detected/estimated location
+- detected incident category
+- date/time
+- anonymous status
+- AI-generated labels if applicable
+- confidence information if already supported
+
+The analyst should have two main decisions:
+
+[ Approve Report ]
+
+[ Deny Report ]
+
+Replace the existing "Suspected Spam" action with:
+
+"Deny Report"
+
+If useful, after clicking Deny Report, optionally allow a simple reason such as:
+
+- Spam
+- Duplicate
+- Insufficient information
+- Inaccurate location
+- Not safety related
+- Other
+
+But keep this lightweight.
+
+==================================================
+STEP 4 — FIX APPROVE / DENY WORKFLOW
+==================================================
+
+There is currently a problem where approving a report does not properly advance the review queue or update the application.
+
+Fix this.
+
+When an analyst clicks APPROVE:
+
+1. Mark that report as approved.
+2. Remove it from the pending review queue.
+3. Save the approved status.
+4. Add the report to the dataset used by the public heat map.
+5. Recalculate / refresh the heat map if necessary.
+6. Automatically load the NEXT pending report.
+
+The analyst should NOT need to manually refresh the page.
+
+When an analyst clicks DENY:
+
+1. Mark the report as denied.
+2. Remove it from the pending queue.
+3. Do NOT add it to the heat map.
+4. Automatically load the NEXT pending report.
+
+If no reports remain, display something simple such as:
+
+"No pending reports to review."
+
+IMPORTANT:
+Approved reports should affect the same collective heat-map system already used by the application.
+
+A newly approved report should become visible on the heat map without requiring a complete application restart.
+
+==================================================
+STEP 5 — DEFINE REPORT STATUS CLEARLY
+==================================================
+
+Every submitted user report should have a moderation status such as:
+
+pending
+approved
+denied
+
+New reports should begin as:
+
+pending
+
+Only APPROVED user-submitted reports should contribute to the public heat map.
+
+Denied reports should remain excluded.
+
+Existing official/public dataset records may continue to appear according to the system already in place.
+
+Do NOT require official City dataset records to go through the student-report moderation queue unless that is already intentionally part of the application.
+
+==================================================
+STEP 6 — SIMPLIFY THE INCIDENT REPORTING INTERFACE
+==================================================
+
+The current reporting form is too cluttered.
+
+The original concept is that AI should do as much of the organizational work as possible.
+
+The student should NOT have to manually fill in every possible field.
+
+Redesign the report form around the simplest possible user action:
+
+PRIMARY INPUTS:
+
+1. Upload / Take Photo
+2. Short Description
+
+These should be the main visible fields.
+
+Example:
+
+[ Upload Photo ]
+
+"What happened?"
+[ Short text box ]
+
+Then:
+
+[ Analyze Report ]
+
+The system should attempt to fill in the rest.
+
+==================================================
+STEP 7 — MAKE LOCATION MOSTLY AUTOMATIC
+==================================================
+
+Location should NOT feel like a required complicated form field.
+
+The system should attempt to determine location using available information such as:
+
+1. image GPS / EXIF metadata
+2. existing device/browser location if permission is available
+3. clues already supported by the application
+4. user's description
+
+After analysis, show something simple such as:
+
+Detected Location:
+Near Student Union
+
+[ Confirm ]
+[ Change ]
+
+If the system cannot determine the location, THEN ask the user to:
+
+- manually type the location
+or
+- place a point on the map
+
+Do not make manual location entry mandatory before the AI has attempted detection.
+
+Location is necessary for the heat map internally, but the interface should make obtaining it feel simple.
+
+==================================================
+STEP 8 — MAKE INCIDENT TYPE AUTOMATIC
+==================================================
+
+Do NOT require the user to manually select an incident category before submitting their initial information.
+
+Instead:
+
+Use the uploaded image and/or short description to estimate the category.
+
+Possible categories may include the categories already supported by the application, such as:
+
+- Fighting / Violence
+- Theft
+- Harassment
+- Suspicious Activity
+- Property Damage
+- Medical Concern
+- Other
+
+After analysis, display:
+
+Possible Incident Type:
+Fighting / Violence
+
+AI Estimate
+
+[ Confirm ]
+[ Change ]
+
+The user can correct the category if necessary.
+
+This preserves the original project concept:
+AI organizes the report rather than making the student fill out a long form.
+
+==================================================
+STEP 9 — REMOVE UNNECESSARY REQUIRED FIELDS
+==================================================
+
+Review the entire current report form.
+
+Remove unnecessary required-field validation.
+
+The user should generally NOT be blocked because they failed to manually provide:
+
+- exact location
+- incident category
+- detailed title
+- severity
+- additional structured information
+
+The app should instead derive those values where possible.
+
+For the prototype, the minimum reporting interaction should be approximately:
+
+OPTION A:
+Photo only
+
+OPTION B:
+Description only
+
+OPTION C:
+Photo + description
+
+Then the system analyzes what it has.
+
+If absolutely essential information is still missing after analysis, ask for only that missing information.
+
+Example:
+
+"We couldn't determine where this happened. Please select the location."
+
+Do NOT display a large collection of required fields all at once.
+
+==================================================
+STEP 10 — ADD A SIMPLE AI REPORT REVIEW SCREEN
+==================================================
+
+After the user provides their photo and/or description, show a clean summary.
+
+Example:
+
+REPORT PREVIEW
+
+Photo:
+[ image ]
+
+Detected location:
+Near Student Union
+[ Change ]
+
+Possible incident:
+Fighting / Violence
+[ Change ]
+
+Description:
+Two people were fighting outside.
+[ Edit ]
+
+Submit anonymously:
+Yes / No
+
+[ Submit Report ]
+
+Use language such as:
+
+"AI-generated details may be inaccurate. Please review before submitting."
+
+This should feel much cleaner than a traditional police report form.
+
+==================================================
+STEP 11 — KEEP USER CONFIRMATION AS A GUARDRAIL
+==================================================
+
+The AI should organize information, but it should NOT make unchecked final claims.
+
+For inferred fields such as:
+- location
+- incident type
+
+Allow the user to confirm or correct them.
+
+Never claim:
+"This is definitely a crime."
+
+Use:
+"Possible Incident Type"
+"AI Estimate"
+"Detected Location"
+"Please Confirm"
+
+Do not use facial recognition.
+
+Do not identify people in photos.
+
+==================================================
+STEP 12 — FINAL NAVIGATION STRUCTURE
+==================================================
+
+After these changes, the application should behave approximately like this:
+
+PUBLIC USER:
+
+Landing Page
+↓
+View Heat Map
+↓
+Interactive public heat map
+
+
+RESIDENT / VISITOR:
+
+Landing Page
+↓
+Continue as Resident / Visitor
+↓
+Normal user interface
+↓
+Optional incident report
+
+
+SJSU STUDENT / STAFF:
+
+Landing Page
+↓
+SJSU Login
+↓
+Normal user interface / heat map
+↓
+Optional incident report
+
+
+ANALYST:
+
+Landing Page
+↓
+Analyst Login
+↓
+Analyst Review Dashboard
+↓
+Pending Report
+↓
+Approve / Deny
+↓
+Next Report
+
+Analyst users should NOT automatically enter the regular reporter interface.
+
+Normal users should NOT automatically enter analyst mode.

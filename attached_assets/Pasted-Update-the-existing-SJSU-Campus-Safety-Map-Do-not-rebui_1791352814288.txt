@@ -1,0 +1,56 @@
+Update the existing SJSU Campus Safety Map. Do not rebuild the app or remove any existing features, filters, report data, map controls, or location buttons.
+
+Redesign the map so a first-time user can understand it immediately. The map should communicate report activity and volume—not confirmed danger or verified risk.
+
+Make the following changes:
+
+1. Simplify the marker colors
+- Stop using red, orange, and yellow as the primary marker colors because they make the map look like an emergency or danger map.
+- Use one calm color for all report markers, such as blue, teal, or purple.
+- Keep the report number visible inside each marker.
+- Use only modest size differences:
+  - 1–2 reports: small circle
+  - 3–5 reports: medium circle
+  - 6+ reports: slightly larger circle
+- Do not allow large clusters to dominate the map.
+
+2. Change the map shading
+- Remove the red hotspot shading or replace it with a subtle blue, teal, or purple gradient.
+- Light shading should mean fewer reports.
+- Darker shading should mean higher report volume.
+- The shading must not imply danger, threat, or confirmed risk.
+- Keep the grayscale basemap, but make it slightly muted so markers and labels stand out.
+- Make the campus boundary thinner and less visually prominent.
+
+3. Simplify the legend
+Replace the current legend with this wording:
+
+LEGEND
+
+Number = approved reports
+Larger circles = more reports
+Darker shading = higher report volume
+
+This map shows report activity,
+not confirmed danger or verified risk.
+
+If priority information is still available, explain that it appears after selecting a location rather than using marker colors to represent priority.
+
+4. Move category and priority details into the marker popup
+- When a user clicks a marker, show the report count, categories, priority, and status in the popup.
+- Do not use the entire marker color or map shading to represent category or priority.
+- Keep category and priority information available without making the overview map visually confusing.
+
+5. Reduce map clutter
+- Keep major landmarks such as SJSU Campus, Student Union, MLK Library, San Pedro Square, Diridon Station, and Convention Center.
+- Hide or reduce secondary labels when zoomed out.
+- Avoid unnecessary leader lines unless they are needed to connect a label to a location.
+- Make sure overlapping markers remain visible through simple clustering or slight separation.
+- Keep the map easy to read at both the SJSU Campus and Downtown views.
+
+6. Preserve the existing interface
+- Keep the current time filters, type filter, report count, map controls, SJSU Campus button, Downtown button, approved-report logic, and disclaimer.
+- Do not add unnecessary graphics or new features.
+- Maintain the existing dark navy interface style.
+
+The final result should feel informative, calm, and trustworthy. A first-time user should immediately understand: “The numbers show how many approved reports exist in each area, and darker shading means more report activity.”

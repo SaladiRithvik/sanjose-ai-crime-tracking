@@ -1,0 +1,132 @@
+Continue improving the SAME existing **SJSU Campus Safety Heat Map** prototype. Do not rebuild, remove, or redesign existing features.
+
+The app already includes:
+
+* Student login
+* Anonymous reporting
+* Image upload
+* GPS/EXIF location detection when available
+* Manual map location selection
+* Description field
+* Existing map features
+
+## Goal
+
+Turn every submission into a consistent incident record that can be stored and used by the existing map later.
+
+Each report must include:
+
+* Unique report ID
+* Latitude and longitude
+* Location or landmark name
+* Incident date and time
+* Description
+* Incident category
+* Optional image
+* Anonymous yes/no
+* Optional display name
+* Submission timestamp
+* Demo-data indicator
+
+## Incident categories
+
+Use this simple category selector based on the linked Coplogic/San José reporting categories:
+
+* Fraud
+* Forgery
+* Forgery — Bad Checks
+* Fraudulent Use of Credit/Debit Card
+* Harassing Communications
+* Identity Theft
+* Lost Property
+* Non-Injury Traffic Accident
+* Theft
+* Theft from Vehicle
+* Vandalism
+* Vandalism of Vehicle
+* Other Safety Concern
+
+Allow the user to select or change the category before submitting. If the description suggests a category, show it only as a suggestion. Never make a final legal determination automatically.
+
+## Report preview
+
+Before submission, show a preview containing:
+
+* Location
+* Map marker
+* Latitude and longitude
+* Date and time
+* Description
+* Category
+* Optional image
+* Anonymous-reporting choice
+* Display name, if applicable
+
+Allow the user to edit the location, description, category, date, time, and anonymity choice.
+
+Require location confirmation before submission.
+
+After confirmation:
+
+* Save the report.
+* Generate a unique report ID.
+* Return the user to the existing map.
+* Show a confirmation message with the report ID.
+* Make the report available to the shared incident dataset.
+
+## Storage
+
+Use the simplest storage method already suitable for this Replit project, such as local storage or the existing lightweight backend.
+
+Reports must remain available after refreshing the page.
+
+Preserve all report fields, including latitude, longitude, category, date, time, description, image status, anonymity, and display-name rules.
+
+Anonymous reports must never publicly display:
+
+* Names
+* Emails
+* Student IDs
+* Passwords
+* Private account information
+
+Prevent duplicate submissions if the user clicks the submit button more than once.
+
+## Demo data
+
+Add 8–12 fictional sample reports around SJSU and Downtown San José.
+
+The sample reports should:
+
+* Use different coordinates
+* Include several nearby locations
+* Use different categories
+* Use different dates and times
+* Have realistic fictional descriptions
+* Be marked internally as demo data
+* Never be presented as real incidents
+
+Use general landmarks such as the SJSU Student Union, MLK Library, Paseo de San Antonio, San Pedro Square, South First Street, Washington Square, Campus Village, and the downtown transit area.
+
+Do not add exact private addresses.
+
+## Testing
+
+Before finishing, test:
+
+1. Login and anonymity still work.
+2. Image upload still works.
+3. GPS and manual location selection still work.
+4. Location correction and confirmation work.
+5. Category selection works.
+6. The report preview works.
+7. Reports receive unique IDs.
+8. Reports remain after refreshing.
+9. Anonymous reports protect identity.
+10. Latitude and longitude are stored correctly.
+11. Demo reports appear on the existing map.
+12. Existing map behavior still works.
+13. Double-clicking Submit does not create duplicate reports.
+14. There are no console errors or unexpected page refreshes.
+
+Do not add heat-map intensity, clustering, moderation, spam filtering, route planning, image recognition, or new advanced features yet. Stop when the reliable report-data system is complete.

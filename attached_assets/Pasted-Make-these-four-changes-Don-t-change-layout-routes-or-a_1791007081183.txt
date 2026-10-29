@@ -1,0 +1,36 @@
+Make these four changes. Don't change layout, routes, or anything not listed.
+
+1. Fix color hierarchy (whole app, starting with the landing page)
+Everything is navy, so nothing stands out. Use color by meaning:
+- Navy: hero banner, header, and icons only.
+- Body text and card descriptions: neutral dark gray (#1F2937 for titles, #4B5563 for descriptions), not blue.
+- One accent color for primary actions: SJSU gold (#E5A823) with dark text. Use it for the main button on each screen (example: "View Heat Map").
+- Text links like "Log In" and "Analyst Login": dark gray with an arrow, gold underline on hover.
+- Red is reserved for emergency actions only. Green is reserved for Approved.
+Check contrast meets WCAG AA.
+
+2. Demo wording: say it once
+Keep the header line "A student-built neighborhood prototype" on the landing page as the only demo notice. Remove every other demo mention in the app:
+- Replace the "FICTIONAL DEMO" badge with a real status badge. Existing sample records become Approved.
+- Remove "Fictional demo —" from record titles, tooltips, the chip under the map, and the detail panel.
+- Give sample records the same ID format as real ones (SJSU-xxxx).
+- Change "1 approved · 24 fictional examples" to a single count ("25 approved reports").
+- Landing page: change "clearly labeled demonstration data" to "See reported activity around campus before deciding whether to report."
+- Remove "Fictional demo" from the map legend and "student-built prototype" from the detail panel note.
+
+3. Simplify the map hover tooltip
+Replace the long sentence with a small card:
+- Line 1: incident type in bold + severity badge
+- Line 2: location
+- Line 3: date and time
+Cluster bubbles show the count and severity breakdown ("5 reports · 2 High · 2 Medium · 1 Low").
+
+4. Analyst review screen
+Tabs with counts: Pending Review (default), Approved, Denied, All Reports.
+Report list on the left, selected report on the right with full details.
+Under the details, a "Review decision" section:
+- Comment box labeled "Analyst comment".
+- Green "Approve" button and red "Deny" button.
+- Deny requires a reason: Spam, Duplicate, Not enough detail, Other.
+After a decision, the report moves to the right tab, shows reviewer, time, reason, and comment, and the submitter can see the status and comment in their own submissions. Only approved reports appear on the public map.
+Add 5 sample pending reports, 2 of them obvious spam.

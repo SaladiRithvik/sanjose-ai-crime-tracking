@@ -1,0 +1,104 @@
+Update the existing SJSU SafeMap interface. Do not rebuild the app or remove existing filters, map controls, report data, location buttons, approval rules, or report functionality.
+
+Fix these issues:
+
+1. Make the legend compact and minimized by default
+
+Replace the current legend content with:
+
+LEGEND
+
+Number = reports
+Blue shading = report volume
+
+Remove the longer explanatory text from the legend, including:
+
+- Larger circles = more reports
+- This map shows report activity, not confirmed danger or verified risk.
+- Select a location for category, priority, and status details.
+
+Keep the full safety disclaimer in the existing bottom information bar.
+
+The legend should:
+
+- Load in its collapsed/minimized state by default
+- Show only the “Legend” title and expand/collapse control initially
+- Expand when the user clicks the title
+- Be smaller and less visually dominant when expanded
+- Be slightly transparent
+- Not cover important markers or map content
+- Work consistently on the landing page, logged-in view, desktop, and mobile
+
+2. Restore intuitive cluster behavior
+
+When a user clicks a cluster marker:
+
+- Immediately zoom into that cluster
+- Do not open a dropdown, large popup, or report list before zooming
+- Do not require the user to select an item before zooming
+- Continue zooming until individual report markers become visible
+- If the map reaches maximum zoom and reports still overlap, separate the markers slightly or use a simple spiderfy layout
+
+The expected behavior is:
+
+Click cluster → map zooms in → individual markers become visible → user clicks an individual marker for details.
+
+3. Remove the oversized cluster popup
+
+Do not show the large popup containing:
+
+- Approved report totals
+- Long category lists
+- Priority summaries
+- Status summaries
+- A scrollable dropdown of report locations
+
+This popup blocks the map and is visually overwhelming.
+
+If a cluster reaches maximum zoom and still contains multiple reports, show only a small message such as:
+
+“12 reports in this area”
+
+Include a simple close button, but do not display a large scrollable panel over the map.
+
+4. Keep individual report details simple
+
+Clicking an individual marker may show a compact popup containing:
+
+- Report category
+- Priority
+- Status
+- Date or location, if already available
+
+Use a clean, compact card with limited height. Avoid nested scrolling unless absolutely necessary.
+
+5. Preserve the current visual design
+
+Keep:
+
+- Calm blue numbered markers
+- Subtle blue report-volume shading
+- Muted grayscale basemap
+- Thin campus boundary
+- SJSU Campus and Downtown buttons
+- Existing filters and map controls
+- Existing bottom disclaimer
+- Existing approved-report logic
+
+Do not add unnecessary graphics, panels, dropdowns, or new features.
+
+The final interaction should be:
+
+- The map overview shows report numbers and report volume.
+- The legend starts minimized.
+- Clicking a cluster immediately zooms into it.
+- Clicking an individual marker shows its details.
+- The legend explains the map in two short lines without overpowering the interface.
+
+After making the changes, test the behavior at both the SJSU Campus and Downtown views, including desktop and mobile layouts. Verify that:
+
+- The legend starts collapsed.
+- Clicking a cluster always zooms first.
+- No oversized cluster popup or dropdown appears.
+- Individual marker popups remain readable.
+- The legend does not cover important map content.
