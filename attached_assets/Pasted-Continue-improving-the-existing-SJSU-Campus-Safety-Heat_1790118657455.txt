@@ -1,0 +1,53 @@
+Continue improving the existing SJSU Campus Safety Heat Map app. Do not rebuild or remove existing features.
+Expand reporting access to include:
+SJSU students using the existing simulated login
+Residents who can continue without logging in
+Keep logout, session persistence, anonymity, image upload, and existing heat-map features working.
+Add a reporter-type choice:
+SJSU student
+Resident/visitor
+Maintain privacy rules:
+Anonymous reports must not display names or emails.
+Student IDs must never appear publicly.
+Non-anonymous users may provide an optional display name.
+Do not collect passwords, unnecessary emails, or private information.
+Improve image and location handling:
+Allow optional image upload.
+Show an image preview.
+Allow image removal and replacement without refreshing the page.
+Check uploaded images for EXIF/GPS metadata.
+If GPS data exists, display the detected coordinates and require user confirmation.
+If GPS data is unavailable, display: “Location could not be automatically detected. Please select the incident location manually.”
+Allow users to select, move, correct, and confirm a location directly on the existing map.
+Never invent a location or claim image recognition can identify an exact building.
+Add simple prototype moderation for unauthenticated submissions. Do not permanently delete reports.
+Classify each report with:
+Moderation status: Pending review, Accepted, or Suspected spam
+Priority status: Critical, High, Normal, Low, or Unknown
+Moderation reason
+Flag possible spam when reports are empty, extremely short, repeated, promotional, nonsensical, or unrelated to safety.
+Flag low-priority reports when they describe minor maintenance issues, general opinions, non-urgent concerns, or lack a specific location or time.
+Do not automatically reject reports or make emergency/law-enforcement decisions. Keep suspected spam and low-priority reports available for human review. Do not change the existing heat-map calculation yet.
+Each report should store:
+Reporter type
+Optional image
+Confirmed location coordinates
+Description
+Anonymous status
+Optional display name
+Moderation status
+Priority status
+Moderation reason
+Submission date and time
+Before finishing, test:
+Student login, logout, and session persistence
+Resident/visitor access without login
+Anonymous and display-name options
+Student ID privacy
+Image upload, preview, removal, and replacement
+GPS detection and manual location selection
+Location correction and confirmation
+Spam and low-priority classification
+Existing heat-map features
+No unexpected page refreshes or console errors
+Keep the design simple, responsive, accessible, and appropriate for a student-built prototype. When these features work, stop and do not begin later features.

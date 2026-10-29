@@ -1,0 +1,37 @@
+Update the public map page and sample data. Don't change login, the report form, the analyst view, or the detail panel.
+
+1. ADD SAMPLE REPORTS
+Add 52 approved reports (4 per category across all 13 categories in the app, so it splits evenly).
+- Spread across SJSU campus and downtown San José, using general landmarks only (Student Union, MLK Library, Paseo de San Antonio, San Pedro Square, SoFA, Diridon, Washington Square, Campus Village, South First St). No private addresses.
+- Dates spread over the last 60 days so the 7-day and 30-day filters show different results.
+- Mix severity within each category where it makes sense. Create a few tight groups of 5 to 8 reports at 3 or 4 hotspots (for example near MLK Library, Paseo de San Antonio, and the Diridon area), and scatter the rest.
+- Descriptions read like real submissions, no disclaimers. Same SJSU-xxxx ID format.
+
+2. CLEANER BASEMAP
+- Switch to a label-free light gray basemap (Esri World_Light_Gray_Base) so street names and park labels disappear. If it fails, keep the current tiles at lower opacity.
+- Only our own labels show on the map.
+
+3. FEWER, SMARTER LABELS
+- Default view shows only: SJSU Campus, MLK Library, Student Union, San Pedro Square, Diridon Station, Convention Center.
+- All other landmarks (garages, City Hall, St. James Park, SoFA, and so on) appear only when zoomed in.
+- White pill background on every label. Labels never sit under a marker. Hide one if it can't fit.
+
+4. MARKERS THAT READ AT A GLANCE
+- Single report: small solid dot in severity color, white outline.
+- Cluster: filled circle in the highest severity color with a bold number (white text on orange and red, dark text on yellow). Bigger circle for bigger count.
+- Selected marker gets a larger ring so it is easy to find. Remove the "Selected:" chip under the map.
+- Reduce the cluster radius so hotspots stay separate instead of merging into one big bubble at the default zoom.
+
+5. HEAT THAT ACTUALLY SHOWS HOTSPOTS
+- Real density layer: transparent where there are no reports, light red, then deep red where reports pile up. Visible but always behind markers.
+- Zoomed out: heat is strong. Zoomed in past street level: heat fades and individual markers take over.
+
+6. ONE CONTROL ROW, LEGEND ON THE MAP
+- Put everything in a single row above the map: time filter (7 days, 30 days, All), a Type dropdown (All types plus each category), and the Low / Medium / High chips as show-hide filters.
+- Delete the large legend box. Add a small collapsible legend inside the map, bottom-left: severity colors, "Number = reports", "Red shading = more reports".
+- Keep "SJSU Campus" and "Downtown" jump buttons on the map.
+- Show "X of 82 shown" next to the filters and update it live.
+
+7. SMALL FIXES
+- Disable text selection on zoom buttons (they highlight blue when clicked).
+- Shorten the footer note to: "Shading shows report volume, not verified risk. Pending and denied reports are excluded."

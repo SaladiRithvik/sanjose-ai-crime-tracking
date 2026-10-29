@@ -1,0 +1,111 @@
+Continue improving the SAME existing SJSU Campus Safety Heat Map prototype.
+
+The app already has:
+- login
+- anonymity
+- image upload
+- incident location selection
+- structured reports
+- stored report data
+- fictional demo reports
+
+Preserve all of those systems.
+
+GOAL FOR THIS STEP:
+Turn the existing map into a proper COLLECTIVE incident heat map focused on SJSU.
+
+COLLECTIVE HEAT MAP:
+Every submitted report should contribute to ONE collective heat visualization.
+
+The visualization should represent the CONCENTRATION of reported incidents.
+
+Nearby reports should strengthen the same heat area.
+
+For example:
+
+1 isolated report:
+very light heat
+
+Several reports close together:
+yellow/orange
+
+Many reports concentrated in the same area:
+red
+
+Very high concentration:
+deep red
+
+Use a traditional heat-map gradient:
+
+LOW
+light yellow
+
+MODERATE
+yellow
+
+ELEVATED
+orange
+
+HIGH
+red
+
+HIGHEST CONCENTRATION
+deep red
+
+Do NOT make a single report automatically produce a deep-red area.
+
+Heat intensity should primarily depend on:
+- number of nearby reports
+- geographic concentration
+
+Keep the algorithm simple and understandable for this prototype.
+
+MAP ACCURACY:
+Focus the default map view on San Jose State University.
+
+Use a proper interactive geographic map such as the map library already being used.
+
+If Leaflet/OpenStreetMap is already being used, continue using it.
+
+I may later upload a PDF of the official SJSU campus map.
+
+Structure this feature so the PDF can later be used as a visual/reference source for improving:
+- campus boundaries
+- building labels
+- walkways
+- important campus locations
+
+Do not replace the geographic map with a static PDF image.
+
+HEAT-MAP LEGEND:
+Add a visible legend explaining the gradient.
+
+Use language such as:
+
+"Reported Incident Concentration"
+
+Low → High
+
+IMPORTANT LANGUAGE:
+The map represents USER-REPORTED INCIDENTS.
+
+Do not describe map colors as absolute proof that an area is safe or dangerous.
+
+Prefer:
+"Higher concentration of reported incidents"
+
+instead of:
+"Dangerous area"
+
+Keep a short disclaimer visible somewhere:
+"Map colors represent concentrations of user-submitted reports and do not guarantee the safety of an area."
+
+VERIFY:
+- reports close together produce stronger heat
+- isolated reports remain weaker
+- newly submitted reports update the heat map
+- demo reports appear
+- map is centered appropriately around SJSU
+- all previous reporting features still work
+
+Stop after the collective heat map is functioning properly.

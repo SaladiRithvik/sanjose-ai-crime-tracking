@@ -1,0 +1,198 @@
+/* Public atlas only: visual clarity without changing density sampling or geographic radius. */
+.public-heat-map { padding-top: 30px; }
+.public-heat-map .page-intro { max-width: 900px; }
+.public-heat-map .display-title { margin: 11px 0 8px; font-size: clamp(32px, 3.4vw, 43px); line-height: 1.06; }
+.public-heat-map .intro-copy { max-width: 760px; font-size: 13px; line-height: 1.5; }
+.public-heat-map .map-card {
+  border-color: #b9c7bd;
+  box-shadow: 0 14px 36px rgba(37, 72, 67, .09);
+}
+.public-heat-map .map-head {
+  padding: 25px 26px 20px;
+  align-items: center;
+}
+.public-heat-map .map-title {
+  font: 700 clamp(20px, 2.4vw, 27px)/1.15 var(--app-font-serif);
+  letter-spacing: -.03em;
+}
+.public-heat-map .map-caption { max-width: 510px; margin-top: 8px; font-size: 12px; }
+.atlas-index {
+  display: block;
+  margin-bottom: 9px;
+  color: #926038;
+  font: 700 10px var(--app-font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.atlas-legend {
+  display: grid;
+  gap: 9px;
+  width: min(340px, 100%);
+  flex: 0 0 340px;
+  padding: 13px 15px;
+  border: 1px solid #d8dbce;
+  border-radius: 9px;
+  background: #f7f5ec;
+}
+.atlas-legend-row { display: flex; align-items: center; gap: 10px; }
+.atlas-legend-row strong { color: #304844; font-size: 11px; }
+.atlas-legend-row small { color: #64766e; font-size: 10px; line-height: 1.3; }
+.atlas-legend-point { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.atlas-legend-point + .atlas-legend-point { margin-left: auto; }
+.atlas-legend .incident-swatch {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  border: 3px solid #fdf8eb;
+  border-radius: 50%;
+  background: #245b64;
+  box-shadow: 0 0 0 2px #244e55, 0 2px 5px rgba(24, 53, 53, .28);
+}
+.atlas-legend .incident-swatch.demo { background: #9b542b; box-shadow: 0 0 0 2px #6e3c26, 0 2px 5px rgba(57, 39, 30, .25); }
+.atlas-legend .density-swatch {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #b42f30 8%, #e98939 40%, #f4d76b 65%, rgba(255,244,176,0) 78%);
+}
+.atlas-legend .density-caption { display: grid; gap: 1px; }
+.atlas-legend .heat-gradient {
+  height: 9px;
+  border: 0;
+  background: linear-gradient(90deg, #fff4b0, #f9d34d 26%, #ed8c32 51%, #d64531 76%, #861b29);
+}
+.atlas-legend .heat-key-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #5c6d65;
+  font: 10px var(--app-font-sans);
+}
+.atlas-legend .heat-key-labels span:last-child { text-align: right; }
+.public-heat-map .map-visual {
+  height: clamp(410px, 45vw, 560px);
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #c5d2c5;
+  border-bottom: 1px solid #c5d2c5;
+  border-radius: 0;
+  background: #e4e8de;
+}
+/* Quiet the streets and labels underneath the unchanged heat colors. */
+.public-heat-map .map-geography .leaflet-tile-pane {
+  filter: none;
+}
+.incident-cluster-icon.severity-high .incident-cluster-symbol { color: #1F2937; }
+.incident-cluster-icon.selected .incident-cluster-symbol { transform: scale(1.04); }
+.incident-cluster-icon:focus-visible { outline: 2px solid #4B5563; outline-offset: 5px; border-radius: 50%; }
+.public-heat-map .map-geography .leaflet-control-zoom {
+  margin-top: 14px;
+  margin-left: 14px;
+  border: 1px solid #b5c6ba;
+  box-shadow: 0 3px 12px rgba(38, 61, 52, .16);
+}
+.public-heat-map .map-geography .leaflet-control-zoom a { width: 35px; height: 35px; line-height: 35px; }
+.public-heat-map .map-stamp { top: 15px; left: 63px; background: rgba(252, 248, 236, .96); }
+.public-heat-map .map-geography .incident-marker-icon {
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.incident-marker-symbol {
+  display: block;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff8e8;
+  border-radius: 50%;
+  background: #245b64;
+  box-shadow: 0 0 0 1px #244e55, 0 1px 3px rgba(24, 42, 37, .35);
+  transition: transform .18s ease;
+}
+.incident-marker-icon.demo .incident-marker-symbol {
+  background: #9b542b;
+  box-shadow: 0 0 0 1px #703b25, 0 1px 3px rgba(54, 32, 22, .35);
+}
+.incident-marker-icon.selected .incident-marker-symbol {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 1px #244e55, 0 0 0 3px rgba(255, 248, 232, .92), 0 0 0 4px #245b64;
+}
+.incident-marker-icon.demo.selected .incident-marker-symbol {
+  box-shadow: 0 0 0 1px #703b25, 0 0 0 3px rgba(255, 248, 232, .92), 0 0 0 4px #9b542b;
+}
+.incident-marker-icon:hover .incident-marker-symbol { transform: scale(1.15); }
+.incident-marker-icon.selected:hover .incident-marker-symbol { transform: scale(1.2); }
+.public-heat-map .map-geography .incident-marker-icon:focus-visible { outline: 2px solid #304844; outline-offset: 2px; border-radius: 50%; }
+.public-heat-map .map-selection-label {
+  display: flex;
+  width: fit-content;
+  max-width: calc(100% - 48px);
+  margin: 15px 24px 8px;
+  padding: 9px 11px;
+  background: #eff3e9;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.public-heat-map .map-selection-label .legend-dot { width: 11px; height: 11px; background: #245b64; }
+.public-heat-map .map-selection-label .legend-dot.demo { background: #9b542b; }
+.public-heat-map .map-foot { padding-top: 12px; }
+.public-heat-map .record-list { margin-top: 0; }
+.public-heat-map .record-list-head { flex-wrap: wrap; }
+.public-heat-map .record-list-scroll {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-height: 420px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+}
+.public-heat-map .record-list-item { width: 100%; min-height: 78px; }
+.public-heat-map .record-list-item:hover { border-color: #729287; background: #eff3e9; }
+.public-heat-map .record-list-item:focus-visible { outline: 2px solid #245b64; outline-offset: 2px; }
+@media (max-width: 900px) {
+  .public-heat-map .map-head { align-items: flex-start; flex-direction: column; }
+  .atlas-legend { flex-basis: auto; width: 100%; }
+}
+@media (max-width: 640px) {
+  .public-heat-map .record-list-scroll { max-height: 330px; }
+  .public-heat-map { padding-top: 24px; }
+  .public-heat-map .display-title { font-size: 32px; }
+  .public-heat-map .map-head { display: flex; padding: 15px 16px; gap: 11px; }
+  .public-heat-map .map-caption { font-size: 11px; line-height: 1.4; }
+  .atlas-legend { padding: 9px 11px; gap: 6px; }
+  .public-heat-map .map-visual { height: min(63dvh, 490px); min-height: 340px; }
+  .public-heat-map .map-stamp { top: 13px; left: 59px; font-size: 9px; }
+  .public-heat-map .map-selection-label { margin: 13px 15px 5px; max-width: calc(100% - 30px); }
+  .public-heat-map .map-foot { padding: 10px 15px 18px; }
+}
+.report-badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; border: 1px solid; font: 700 10px var(--app-font-mono); letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
+.report-badge.status-approved { color: #14532d; background: #dcfce7; border-color: #16a34a; }
+.report-badge.status-pending { color: #581c87; background: #f3e8ff; border-color: #9333ea; }
+.report-badge.status-demo { color: #1e3a8a; background: #dbeafe; border-color: #2563eb; }
+.report-badge.status-denied { color: #7f1d1d; background: #fee2e2; border-color: #b91c1c; }
+.report-badge.status-removed { color: #374151; background: #e5e7eb; border-color: #6b7280; }
+.report-badge.severity i { width: 9px; height: 9px; border-radius: 50%; background: var(--severity-color); border: 1px solid #1f2d3d; }
+.report-badge.severity { color: #1f2d3d; background: color-mix(in srgb, var(--severity-color) 15%, white); border-color: color-mix(in srgb, var(--severity-color) 65%, #64748b); margin-right: 4px; }
+.record-badges { margin-bottom: 4px; }
+.severity-legend { gap: 14px; flex-wrap: wrap; }
+.severity-note { color: #64766e; font-size: 10px; line-height: 1.3; }
+.atlas-legend .incident-swatch.status-solid { background: #fdf8eb; box-shadow: 0 0 0 2px #1f3a52; }
+.atlas-legend .incident-swatch.status-dashed { background: #fdf8eb; box-shadow: none; border: 2px dashed #1f3a52; }
+.public-heat-map .map-geography .incident-marker-icon { position: absolute; width: 36px; height: 36px; display: grid; place-items: center; border: 0; background: transparent; padding: 0; }
+.public-heat-map .incident-marker-icon::before { content: ""; box-sizing: border-box; width: 19px; height: 19px; border-radius: 50%; background: var(--severity-color, #f97316); border: 1.5px solid #fff; box-shadow: 0 1px 4px rgba(20,30,40,.22); grid-area: 1/1; }
+.public-heat-map .incident-marker-icon.selected::before { transform: scale(1.25); }
+.campus-boundary { fill: #c9d8ea; fill-opacity: .1; stroke: #1f3a52; stroke-width: 1.25; stroke-dasharray: none; }
+.campus-landmark-icon { background: transparent; border: 0; }
+.campus-landmark-label { position: absolute; left: 0; top: 0; display: inline-block; padding: 1px 5px; border-radius: 3px; background: rgba(255,255,255,.78); color: #1f3a52; font: 700 10px/1.2 var(--app-font-sans); white-space: nowrap; max-width: 130px; overflow: hidden; text-overflow: ellipsis; pointer-events: none; transform: translate(-50%, -50%); }
+.incident-cluster-icon { background: transparent; border: 0; display: grid; place-items: center; }
+.incident-cluster-symbol { box-sizing: border-box; width: 100%; height: 100%; display: grid; place-items: center; border-radius: 50%; background: #fff; border: 4px solid var(--severity-color); box-shadow: 0 2px 7px rgba(20,30,50,.2); color: #1F2937; font: 800 14px var(--app-font-sans); text-align: center; }
+.incident-tooltip-card { display: inline-flex; align-items: center; gap: 10px; max-width: none; white-space: nowrap; color: #4b5563; font: 12px/1.4 var(--app-font-sans); }
+.incident-tooltip-card > div:first-child { display: flex; align-items: center; gap: 8px; color: #1f2937; }
+.incident-hover.leaflet-tooltip, .incident-hover * { white-space: nowrap; }
+.incident-hover.leaflet-tooltip { max-width: none; padding: 8px 11px; border-color: #E5E7EB; border-radius: 8px; box-shadow: 0 2px 8px rgba(20,30,50,.14); }
+.tooltip-severity-count { display: inline-flex; align-items: center; gap: 5px; }
+.tooltip-severity-dot { display: inline-block; flex: 0 0 9px; width: 9px; height: 9px; border-radius: 50%; }
+.incident-tooltip-card .report-badge.severity { background: color-mix(in srgb, var(--severity-color) 16%, #fff); border: 1px solid color-mix(in srgb, var(--severity-color) 38%, #fff); color: #1F2937; font-size: 10px; font-weight: 800; }

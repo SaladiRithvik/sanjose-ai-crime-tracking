@@ -1,0 +1,16 @@
+.site-emergency-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 36px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #fecaca;
+  background: #fff1f2;
+  color: #7f1d1d;
+  font: 12px/1.5 var(--app-font-sans);
+}
+.site-emergency-bar a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.site-emergency-bar a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 2px; }
+.app-shell.app-shell-with-emergency { min-height: calc(100dvh - 36px); }

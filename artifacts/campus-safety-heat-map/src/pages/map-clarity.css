@@ -1,0 +1,21 @@
+.public-heat-map .mc-head { margin-bottom:18px; animation: appear .5s ease both; }
+.public-heat-map .mc-title { margin: 0 0 8px; font: 700 clamp(24px, 2.5vw, 36px)/1.15 var(--app-font-sans); letter-spacing: -.025em; }
+.public-heat-map .mc-meta { margin: 0; font: 12px/1.5 var(--app-font-mono); color: hsl(var(--muted-foreground)); }
+.public-heat-map .mc-meta a { color: hsl(var(--primary)); font-weight: 700; text-decoration: underline; }
+.public-heat-map .mc-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding:16px 20px 12px; }
+.mc-group { display: flex; flex-wrap: wrap; gap: 6px; }
+.mc-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border-radius: 999px; border: 1px solid hsl(var(--input)); background: transparent; color: #304844; font: 700 12px var(--app-font-sans); cursor: pointer; }
+.mc-chip i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(20,30,40,.2); }
+.mc-chip[aria-pressed="true"] { background: hsl(var(--primary)); border-color: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+.mc-chip[aria-pressed="false"] i { opacity: .35; }
+.mc-chip:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 2px; }
+.mc-count { margin-left: auto; font: 11px var(--app-font-mono); color: hsl(var(--muted-foreground)); }
+.public-heat-map .mc-legend { width:auto; margin:0 20px 16px; box-shadow:none; background:#fff; }
+.public-heat-map .mc-legend .mc-chip[aria-pressed="true"] { background:#F3F6FA; border-color:#CBD5E1; color:#1F2937; }
+.public-heat-map .mc-legend .mc-chip[aria-pressed="false"] { background:#fff; color:#64748B; border-style:dashed; }
+.public-heat-map .map-quick-jumps { display:flex; gap:6px; margin:12px; }
+.public-heat-map .map-quick-jumps button { min-height:40px; padding:8px 12px; background:#fff; border:1px solid #CBD5E1; border-radius:7px; color:#1F2937; box-shadow:0 2px 6px rgba(20,30,50,.12); font:700 12px var(--app-font-sans); cursor:pointer; }
+.public-heat-map .map-quick-jumps button:hover { background:#F3F6FA; }
+.public-heat-map .map-quick-jumps button:focus-visible { outline:2px solid #284a70; outline-offset:2px; }
+.public-heat-map .campus-area-label { padding:3px 6px; font-size:11px; font-weight:800; background:rgba(255,255,255,.85); border:1px solid rgba(40,74,112,.18); }
+@media (max-width: 560px) { .mc-count { margin-left: 0; width: 100%; } }

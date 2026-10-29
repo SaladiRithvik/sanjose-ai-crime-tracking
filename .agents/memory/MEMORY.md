@@ -1,0 +1,13 @@
+- [Shared report privacy](shared-report-privacy.md) — centralized reports and photos were explicitly authorized; local suggestions are not permission for external image AI.
+- [Prototype presentation](prototype-presentation.md) — the user confirmed landing-only prototype disclosure and ordinary approval labels for samples; retain internal provenance.
+- [Submission ownership](submission-ownership.md) — shared entry credentials are not reporter identities; own submissions stay private to the submitting browser.
+- [Campus map reference](campus-map-reference.md) — the supplied campus PDF provides names and layout, not geographic coordinates; picker geometry must come from a georeferenced source.
+- [SafeMap brand identity](safemap-brand-identity.md) — the user-supplied pin-and-shield logo is the primary identity; retain it during future visual polish.
+- [Localized campus heat](heat-map-localization.md) — warm regal volume gradient across both maps; compact collapsed legend, zoom-first clusters, and no implication of verified danger.
+- [Basemap verification](basemap-verification.md) — valid HTTP/image responses can be error tiles; verify real imagery at overview and close zoom in the target region.
+- [SafeMap audience](safemap-audience.md) — SJSU students and downtown San José residents are both primary public-map audiences.
+- [Site-wide password intent](site-access-intent.md) — require a website gate before loading features, separate from prototype roles, to avoid misunderstanding.
+- [Theme verification](theme-verification.md) — verify computed colors behind the website gate; dark panels alone do not confirm a readable theme.
+- [Report recency](report-recency.md) — Recent means submitted less than one hour ago; the tag and highlight expire without a page reload.
+- [Report resolution](report-resolution.md) — resolved reports leave active work and the public map but retain their original decision and history in an archive.
+- [Dependency remediation](dependency-remediation.md) — retain release-age protection and parent module compatibility when patching transitive dependencies.

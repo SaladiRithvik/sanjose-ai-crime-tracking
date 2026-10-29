@@ -1,0 +1,32 @@
+Make these three changes. Don't change anything else.
+
+1. Two reporting paths
+On the landing page, add a full-width card above the three role cards:
+- Red button: "I need help now". Subtext: "Emergency. Get help first, then report."
+- Gold button: "Report a concern". Subtext: "Not urgent. Warn others about something you saw."
+Show the same two options at the start of the report form.
+
+"I need help now" opens a screen with large tap-to-call buttons ("Call 911", "Call University Police", using tel: links). Below them, an optional short form: what is happening, where, and a "use my location" button. Submitting creates an URGENT report and shows: "This report does not dispatch help. Call 911 if you have not already."
+
+"Report a concern" opens the existing report form.
+
+Replace "SafeMap is not an emergency service..." and "Not for emergency use" with "In an emergency, call 911" linked to the help screen.
+
+In the analyst view, add an "Urgent" tab first, with a red count. Urgent reports get a red URGENT badge and sort to the top of All Reports.
+
+2. AI triage on every submitted report
+On submit, send the description to an AI model and save:
+- Urgency: Emergency or Non-urgent
+- Suggested incident type and severity
+- Location and time mentioned
+- Spam likelihood (Low / Medium / High) with a one-line reason
+- One-sentence summary
+
+Reporter side: if a "Report a concern" submission reads as an emergency, show before submitting: "This sounds urgent. Call 911 or switch to I need help now." Let them continue either way.
+
+Analyst side: show an "AI summary" box at the top of the selected report with those fields and a suggested decision, labeled "Suggestion only". The analyst makes the final call.
+
+If the AI call fails, the report still submits and the box says "AI summary unavailable".
+
+3. Voice input
+Add a microphone button to the description field on both paths, using the browser's built-in speech recognition to fill the text box. Hide the button if the browser doesn't support it.

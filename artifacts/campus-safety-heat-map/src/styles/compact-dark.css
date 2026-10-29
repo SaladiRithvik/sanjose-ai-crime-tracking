@@ -1,0 +1,253 @@
+/* Compact + dark layer. Loaded last (see ProtectedApp). Tonal ladder, darkest to lightest:
+   L0 #070b13 page/rail | L1 #0d1422 header, bars | L2 #131c2f panels | L3 #1b2740 nested/hover | input #0e1626
+   Text #eef3fb / #b7c4dc / #8d9bb8. Borders #2a3856, strong #60779e. Accent #dce8ff, gold #E5A823. */
+:root{
+ --d0:#070b13;--d1:#0d1422;--d2:#131c2f;--d3:#1b2740;--d-in:#0e1626;
+ --t1:#eef3fb;--t2:#b7c4dc;--t3:#8d9bb8;--bd:#2a3856;--bd2:#60779e;--acc:#dce8ff;--acc-ink:#0a1a35;
+ --background:222 40% 6%;--foreground:214 40% 95%;--border:219 29% 26%;--input:219 22% 40%;--ring:212 90% 72%;
+ --card:221 37% 14%;--card-foreground:214 40% 95%;--card-border:219 29% 24%;
+ --primary:212 80% 70%;--primary-foreground:220 50% 8%;--secondary:219 33% 18%;--secondary-foreground:214 40% 95%;
+ --muted:219 35% 16%;--muted-foreground:216 24% 74%;--accent:219 33% 18%;--accent-foreground:214 40% 95%;--destructive:0 85% 72%;
+ --navy-900:222 40% 6%;--navy-800:212 75% 74%;--navy-700:212 80% 80%;--navy-100:219 35% 18%;
+ --sidebar:222 40% 6%;--shadow-sm:0 1px 2px rgba(0,0,0,.45);--shadow-md:0 8px 24px rgba(0,0,0,.55);color-scheme:dark}
+html,body{background:var(--d0)}
+body{background-image:none;color:var(--t1);
+ --sm-title:var(--t1);--sm-desc:var(--t2);--sm-gold:#E5A823;--sm-green:#2f8f5b;--sm-red:#c43b3b;
+ --foreground:214 40% 95%;--muted-foreground:216 24% 74%}
+body::before{opacity:.18;filter:invert(1)}
+:focus-visible,body :focus-visible{outline:3px solid #9ec3ff;outline-offset:2px}
+
+/* ---- Text on dark (beats body-scoped safemap-colors) ---- */
+body h1,body h2,body h3,body .display-title,body .card-title,body .record-title,body .info-card-title,body .map-title,
+body .safe-entry-choice-body strong,body .record-list-head strong,body .record-list-item strong,body .atlas-legend-row strong,body .field-label{color:var(--t1)}
+body p,body dd,body small,body .intro-copy,body .card-caption,body .report-note,body .map-caption,body .map-foot,body .record-id,
+body .privacy-note,body .info-list dd,body .severity-note,body .heat-key-labels,body .voice-status,body .atlas-legend-row small{color:var(--t2)}
+body .field-hint,body .record-label,body .review-details dt,body .edit-grid label,body .status-label{color:var(--t3)}
+body .text-link,body .text-button,body .safe-entry-choice-arrow{color:#9ec3ff}
+body .rail-note .text-link{color:#fff}
+
+/* ---- Landing ---- */
+.lp{color:var(--t1);max-width:1320px;padding:8px 12px 12px}
+.lp-header{margin-bottom:8px}.lp-brand{font-size:14px}.lp-brand .brand-logo{height:34px}
+.lp-tag{color:var(--t3);max-width:none}
+.lp-main{gap:14px}.lp-map-frame{border-color:var(--bd2)}
+.lp-legend{color:var(--t2);margin:6px 0 8px}
+.lp-fullmap{min-height:42px;margin-top:8px}  /* gold action preserved from landing.css */
+.lp-report h1{color:var(--t1);font-size:clamp(22px,2.4vw,28px);margin-bottom:10px}
+.lp-cards{gap:10px}
+.lp-card{min-height:96px;padding:12px;background:var(--d2);border:1.5px solid var(--bd2);color:var(--t1)}
+.lp-card:hover,.lp-card[aria-pressed=true]{background:var(--d3);border-color:#9ec3ff}
+.lp-card strong{color:var(--t1)}.lp-card svg{color:#9ec3ff}.lp-card span{color:var(--t2)}
+.lp-form{margin-top:10px;padding:14px;background:var(--d2);border-color:var(--bd)}
+.lp-form h2{color:var(--t1)}.lp-form p{margin-bottom:8px;color:var(--t2)}
+.lp-fields{gap:8px}.lp-fields label{color:var(--t1)}
+.lp-fields input{min-height:40px;background:var(--d-in);color:var(--t1);border-color:var(--bd2)}
+.lp-submit{background:var(--d3);color:var(--t1);border-color:#7899c9;min-height:44px}
+.lp-submit:hover{background:#263a59}
+.lp-err{background:#3a1820;color:#ffd6d6;border-color:#8a3a46}
+.lp-link,.lp-footer .lp-link{color:var(--t2)}
+.lp-footer{margin-top:10px;padding-top:8px;border-color:var(--bd)}
+.lp button:focus-visible,.lp input:focus-visible{outline-color:#9ec3ff}
+.lp-map-state{background:var(--d2);color:var(--t1);border-color:var(--bd2)}
+
+/* ---- Shell: rail L0, header L1 ---- */
+.app-rail{width:200px;flex-basis:200px;padding:12px 10px;background:var(--d0);border-right:1px solid var(--bd)}
+.brand-lockup{padding:0 4px 14px}.rail-item{padding:8px 10px;color:var(--t2)}
+.rail-item:hover{background:var(--d3);color:#fff}
+.rail-item-active,.rail-item-active:hover{background:#263a59;color:var(--t1);border-color:#7899c9}
+.rail-item-active::before{left:-10px;background:var(--acc)}
+.rail-note{padding-top:10px;color:var(--t2);border-color:var(--bd)}.rail-note strong{color:#fff}
+.topbar{height:48px;padding:0 14px;background:var(--d1);border-bottom:1px solid var(--bd);backdrop-filter:none}
+.topbar-context,.topbar-role{color:var(--t2)}.role-avatar{background:#2a4a80;color:#fff}
+.back-login{display:inline-flex;align-items:center;gap:6px;min-height:44px;flex-shrink:0;margin-left:auto;margin-right:14px;padding:0 12px;border:1.5px solid #7899c9;border-radius:8px;background:#263a59;color:var(--t1);font-size:13px;font-weight:700}
+.back-login:hover{background:#314c72}
+.mobile-topbrand{color:var(--t1)}
+.mobile-nav{background:var(--d1);border-bottom:1px solid var(--bd)}
+.mobile-nav a,.mobile-nav button{color:var(--t2)}.mobile-nav .active{background:var(--acc);color:var(--acc-ink)}
+body .site-emergency-bar{background:#3a1218;color:#ffe3e3;border-bottom:2px solid #c43b3b}
+body .site-emergency-bar a{color:#fff}
+
+/* ---- Compact spacing ---- */
+.page-wrap{width:calc(100% - 28px);max-width:1240px;padding:14px 0 24px}
+.page-intro{max-width:none}
+.display-title{font-size:clamp(22px,3vw,30px);margin:6px 0 4px}
+.intro-copy{font-size:14px;margin:0}
+.entry-grid,.review-layout{margin-top:12px;gap:12px}
+.report-card,.record-card{padding:16px}.card-header{margin-bottom:14px}
+.info-card{padding:14px}.info-card-title{margin-bottom:10px}.info-list{gap:9px}
+.safe-report .report-section{margin-bottom:14px}.safe-report .report-section+.report-section{padding-top:14px}
+.safe-report .report-upload{padding:16px 12px}.report-field-grid{margin-bottom:14px}
+.map-head{padding:12px 14px 8px}.map-visual{height:clamp(300px,52vh,480px);margin:0 8px 8px}
+.map-foot{padding:4px 14px 12px}.map-selection-label{margin:0 14px 8px}
+body .public-heat-map{padding-top:12px}
+.record-list{margin-top:12px;padding:10px 12px}.review-summary{margin:10px 0}
+.review-layout .record-list-scroll{max-height:480px}.report-input{min-height:110px}
+
+/* ---- Panels L2 ---- */
+.surface,.safe-entry-aside,.review-summary,.my-submissions,body .atlas-legend,body .atlas-view-options,
+.public-heat-map .mc-legend,[role=alertdialog].surface{background:var(--d2);color:var(--t1);border-color:var(--bd)}
+.my-submission,.review-details,.review-details>div,.record-head,.safe-report .report-section+.report-section{border-color:var(--bd)}
+body .atlas-toolbar,.review-actions{background:var(--d1);border-color:var(--bd)}
+
+/* ---- Nested items L3 ---- */
+.record-list-item,.safe-report .report-choice-row label,.location-picker-view-switch button,.campus-picker-reset,
+.public-heat-map .map-quick-jumps button,.voice-button,.public-heat-map .mc-legend .mc-chip[aria-pressed=false]{background:var(--d1);color:var(--t1);border-color:var(--bd2)}
+.record-list-item:hover,body .public-heat-map .record-list-item:hover,.public-heat-map .map-quick-jumps button:hover{background:var(--d3);border-color:#9ec3ff}
+.record-list-item.selected,.downtown-point.selected,.public-heat-map .mc-legend .mc-chip[aria-pressed=true],
+.safe-report .report-choice-row label:has(input:checked){background:var(--d3);border-color:#9ec3ff;color:var(--t1)}
+.public-heat-map .mc-legend .mc-chip[aria-pressed=false]{color:var(--t3)}
+.voice-button.is-listening{border-color:var(--sm-gold);color:#f3d28a}
+
+/* ---- Controls ---- */
+.report-input,.detail-input,.edit-grid input,.edit-grid textarea,.edit-grid select,.safe-entry-fields input,
+.location-picker-search-row input,body select,body textarea,body input:not([type=checkbox]):not([type=radio]):not([type=file]),
+.public-map-page .pm-type select{background:var(--d-in);color:var(--t1);border-color:var(--bd2)}
+.report-input::placeholder,input::placeholder{color:var(--t3)}
+.report-input:focus,.detail-input:focus,body input:focus,body select:focus,body textarea:focus{border-color:#9ec3ff;box-shadow:0 0 0 3px rgba(158,195,255,.28);outline:none}
+[aria-invalid=true],.report-input[aria-invalid=true]{border-color:#ff8a8a}
+body .secondary-button{background:var(--d2);color:#cfe0ff;border-color:var(--bd2)}
+body .secondary-button:hover:not(:disabled){background:var(--d3);border-color:#9ec3ff}
+body .primary-button:not(.action-approved),body .safe-entry-map{background:var(--sm-gold);color:#1F2937;border-color:#996300}  /* gold primary */
+body .primary-button:not(.action-approved):hover:not(:disabled){background:#F0B93A}
+body .primary-button.action-approved{background:#267548;color:#fff;border-color:#439d68}
+body .primary-button.action-approved:hover:not(:disabled){background:#2b7e50}
+body .danger-button:not(.action-denied){background:var(--d2);color:#ffb3b3;border-color:#b24a4a}
+body .danger-button:not(.action-denied):hover{background:#7a2530;color:#fff}
+body .danger-button,body .danger-button:hover{color:#fff}
+body .danger-button:not(.action-denied){color:#ffb3b3}body .danger-button:not(.action-denied):hover{color:#fff}
+button:disabled,input:disabled{opacity:.7}
+.step-label{background:#1f3358;color:#cfe0ff}
+.toast-message{background:#263a59;color:var(--t1);border-left-color:#9ec3ff}
+.help-tip-content{background:var(--d0);border-color:var(--bd2);color:var(--t1)}
+
+/* ---- Notices / warnings / status (coloured surfaces keep own text colour) ---- */
+.notice,.review-note,.submitted-banner,.safe-report .report-location-box,.safe-report .report-upload,
+.location-picker-selected,.location-picker-references button,.safe-report .report-success,body .public-heat-map .map-selection-label{background:var(--d3);color:var(--t1);border-color:var(--bd2)}
+body .notice p,body .notice small,body .review-note p,body .submitted-banner span{color:var(--t1)}
+.notice{border-left-color:var(--sm-gold)}
+body .urgent-warning{background:#3a1820;border-color:#c43b3b}
+body .urgent-warning p{color:#ffd6d6}
+body .save-error{background:#3a1820;color:#ffd6d6}
+body .call-upd{background:var(--d2);color:var(--t1);border-color:var(--sm-red)}
+body .call-911,body .call-inline,body .path-emergency{background:var(--sm-red);color:#fff}
+body .call-911 small,body .call-inline small,body .path-emergency small,body .path-emergency p{color:#fff}
+.status-pending,.record-list-badge,.urgency-pill,.report-badge.status-pending{background:#3a2c0e;color:#f3d28a;border-color:#6b5320}
+.status-approved,body .report-badge.status-approved,body .status-pill.status-approved,body .map-detail .report-badge.status-approved{background:#12331f;color:#b5f0cc;border-color:#2f8f5b}
+.status-denied,body .report-badge.status-denied,body .status-pill.status-denied{background:#3a1820;color:#ffc2c2;border-color:#7a3340}
+body .urgency-pill small,body .record-list-badge small,body .status-pill small{color:inherit}
+.urgent-badge{background:#c43b3b;color:#fff}
+
+/* ---- Map overlays (map imagery untouched) ---- */
+body .map-geography .leaflet-popup-content-wrapper,body .map-geography .leaflet-popup-tip,body .map-geography .leaflet-tooltip{background:var(--d2);color:var(--t1);border-color:var(--bd2)}
+body .map-geography .leaflet-popup-content,body .map-geography .leaflet-popup-content p,body .map-geography .leaflet-popup-content small{color:var(--t1)}
+body .map-stamp,body .public-heat-map .map-stamp{background:rgba(13,20,34,.92);color:var(--t1);border-color:var(--bd2)}
+body .map-geography .leaflet-control-zoom a{background:var(--d2);color:var(--t1)}
+body .map-geography .leaflet-control-zoom a:hover{background:var(--d3)}
+body .map-geography .leaflet-control-attribution{background:rgba(13,20,34,.88);color:var(--t2)}
+body .map-geography .leaflet-control-attribution a{color:#9ec3ff}
+.public-map-page .public-map-legend{background:rgba(13,20,34,.94);color:var(--t1);border-color:var(--bd2);box-shadow:var(--shadow-sm)}
+.public-map-page .public-map-legend summary:focus-visible{outline-color:#9ec3ff}
+body .map-empty{background:rgba(13,20,34,.94);color:var(--t1);border-color:var(--bd2)}
+.map-visual,body .public-heat-map .map-visual{border-color:var(--bd)}
+/* Keep the orange severity fill; dark count text is readable on that fill. */
+body .public-map-page .incident-cluster-icon.severity-medium .incident-cluster-symbol { color: #17233b; }
+
+/* Keep the compact, readable layouts from the previous spacing pass. */
+.entry-canvas { max-width: 1440px; }
+body .lp-header { flex-wrap: wrap; }
+body .topbar { height: auto; min-height: 56px; gap: 10px; }
+body .topbar-context { min-width: 0; }
+body .public-heat-map .mc-head { margin-bottom: 10px; }
+body .public-heat-map .mc-title, body .public-heat-map .display-title { font-size: clamp(24px, 2.5vw, 30px); }
+body .public-heat-map .mc-controls, body .public-map-page .pm-controls { padding: 10px 14px; gap: 8px 12px; }
+body .mc-chip { color: var(--t2); }
+body .public-heat-map .mc-legend { background: var(--d2); }
+body .public-heat-map .mc-legend .mc-chip[aria-pressed="true"] { background: var(--d3); color: var(--t1); border-color: #7899c9; }
+body .public-heat-map .mc-legend .mc-chip[aria-pressed="false"] { background: var(--d-in); color: var(--t2); }
+body .public-heat-map .map-quick-jumps button { background: var(--d2); color: var(--t1); border-color: var(--bd2); }
+body .public-heat-map .map-quick-jumps button:hover { background: var(--d3); }
+body .map-detail { padding: 14px 16px; }
+body .map-detail-fact { color: var(--t1); }
+body .map-detail-meta, body .map-detail-fact svg, body .map-detail-foot small,
+body .legend-sev, body .legend-three .legend-line > span:last-child:not(.legend-sev) { color: var(--t2); }
+body .map-detail-foot, body .my-submission, body .decision-box { border-color: var(--bd); }
+body .map-detail .remove-outline { color: #ffb3b3; border-color: #b24a4a; }
+body .map-detail .remove-outline:hover { background: #3a1820; color: #ffd6d6; }
+body .location-picker-view-switch button, body .campus-picker-reset,
+body .illustrated-building-list button, body .illustrated-zoom button { background: var(--d2); color: var(--t1); border-color: var(--bd2); }
+body .location-picker-view-switch button.is-active { background: #263a59; color: var(--t1); border-color: #9ec3ff; }
+body .illustrated-picker-top span, body .illustrated-disclosure { color: var(--t2); }
+body .illustrated-hotspot, body .campus-picker-pin span { background: #284a70; color: #fff; }
+body .campus-picker-map .leaflet-control-zoom a { background: var(--d2); color: var(--t1); }
+body .public-map-page .campus-landmark-label { background: #1b2740ed; color: var(--t1); border-color: var(--bd2); }
+body .voice-button, body .review-tab, body .ai-box { background: var(--d2); color: var(--t1); border-color: var(--bd2); }
+body .ai-box .suggest-tag { color: var(--t2); }
+body .review-tab[aria-selected="true"] { background: #E5A823; color: #1F2937; }
+body .my-submissions { margin-top: 12px; padding: 14px; }
+body .help-page .path-chooser, body .call-grid { gap: 10px; margin-bottom: 12px; }
+body .call-button { min-height: 112px; padding: 16px; }
+body .lp-err, body .lp-err p { color: #ffd6d6; }
+
+/* Leaflet tooltips are dark surfaces too; legacy inner colors must not win. */
+body .map-geography .incident-hover.leaflet-tooltip { opacity: 1; }
+body .map-geography .incident-tooltip-card,
+body .map-geography .incident-tooltip-card > div:first-child,
+body .map-geography .tooltip-severity-count { color: var(--t1); }
+body .map-geography .incident-hover.leaflet-tooltip-top::before { border-top-color: var(--d2); }
+body .map-geography .incident-tooltip-card .report-badge.severity { color: #1f2937; }
+
+/* Light map/picker labels and dark notices each retain their own text palette. */
+body .public-map-page .campus-landmark-label { background: var(--d3); }
+body .illustrated-picker { background: var(--d2); border-color: var(--bd); }
+body .illustrated-building-list button span { color: #9ec3ff; }
+body .illustrated-building-list button:hover,
+body .illustrated-building-list button.is-selected { background: var(--d3); border-color: #9ec3ff; }
+body .illustrated-picker-top strong { color: var(--t1); }
+body .safe-report .report-location-box p,
+body .location-picker-message { color: var(--t2); }
+body .location-picker-search summary { color: #9ec3ff; }
+body .help-tip-content p, body .help-tip-content small { color: var(--t2); }
+body .safe-entry-aside h2 { color: var(--t1); }
+body .safe-entry-demo { background: var(--d3); color: var(--t2); }
+body .lp-map-state .lp-link { color: #9ec3ff; }
+
+@media(max-width:900px){.app-rail{width:60px;flex-basis:60px}}
+/* Temporary recency styling does not replace moderation or selection states. */
+body .record-list-item.report-recent {
+  border-color: #e5a823;
+  box-shadow: inset 3px 0 0 #e5a823;
+}
+body .record-list-item.report-recent.selected { border-color: #9ec3ff; }
+body .recent-report-tag {
+  display: block;
+  width: fit-content;
+  margin-top: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #e5a823;
+  color: #1f2937;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+@media(max-width:900px){body .topbar-context{display:none}}
+@media(max-width:640px){
+ .topbar{height:48px;padding:0 10px}.topbar-role{margin-left:0}
+ .back-login{margin-right:8px;min-height:40px;padding:0 10px}
+ .mobile-nav{padding:2px 8px}.mobile-nav a,.mobile-nav button{min-height:40px}
+ .page-wrap{width:calc(100% - 20px);padding:10px 0 20px}
+ .report-card,.record-card{padding:12px}
+ .lp{padding:6px 8px 10px}.lp-tag{display:block;width:100%;text-align:left}.map-visual{height:300px}
+ body .lp-header{gap:4px 10px}
+ body .lp-map-frame{height:clamp(230px,32dvh,300px)}
+ body .lp-cards{grid-template-columns:1fr 1fr}
+ body .lp-card{padding:10px;min-height:112px;gap:5px}
+ body .lp-card strong{font-size:14px}
+ body .lp-card span{font-size:12px}
+ body .lp-fields input,body .back-login{min-height:44px}
+ body .topbar-role{display:none}
+ body .mobile-topbrand{font-size:13px;gap:6px}
+ body .back-login{margin-right:0}
+ body .public-heat-map .mc-chip{min-height:44px}
+}
+@media(max-width:360px){body .lp-cards{grid-template-columns:1fr}body .lp-card{min-height:96px}}

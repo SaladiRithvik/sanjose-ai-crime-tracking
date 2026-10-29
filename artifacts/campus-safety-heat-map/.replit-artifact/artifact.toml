@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "SJSU SafeMap"
+description = "A student-built civic safety reporting prototype for simulated SJSU login, privacy-aware incident reporting, image evidence previews, and human-reviewed draft heat-map signals."
+version = "1.0.0"
+id = "artifacts/campus-safety-heat-map"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25249
+
+[services.development]
+run = "pnpm --filter @workspace/campus-safety-heat-map run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/campus-safety-heat-map", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/campus-safety-heat-map/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25249"
+BASE_PATH = "/"
